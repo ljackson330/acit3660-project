@@ -1,5 +1,7 @@
 <?php
-$host = 'localhost';
+// hostname wil change depending on environment
+// if developing on localhost w/ xampp (apache/mysql) use 'vcandle.cs.uleth.ca'
+$host = 'vcandle.cs.uleth.ca';
 $dbname = 'fivg3669';
 $username = 'fivg3669';
 $password = 'ahW9paich4';
