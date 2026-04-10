@@ -1,5 +1,6 @@
 <?php
 require 'db_connect.php';
+require_once 'auth_check.php';
 
 $sql = "SELECT * FROM MOVIE";
 $result = mysqli_query($conn, $sql);
