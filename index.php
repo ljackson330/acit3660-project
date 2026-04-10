@@ -15,7 +15,7 @@ require_once 'auth_check.php';
     
     <h3>Main Menu</h3>
     <ul>
-        <li><a href="query.php">Browse Movies</a></li>
+        <li><a href="rentals/rent.php">Browse Movies</a></li>
         // TODO: user profile page
         <li><a href="">My Profile & Rental History</a></li>
         
