@@ -27,7 +27,7 @@ include 'includes/header.php';
             <p class="movie-meta-item">View your active rentals and past returns.</p>
         </a>
 
-        <a href="/profile.php" class="movie-card" style="text-align: center; justify-content: center; min-height: 200px;">
+        <a href="profile.php" class="movie-card" style="text-align: center; justify-content: center; min-height: 200px;">
             <div style="font-size: 2.5rem; margin-bottom: 1rem;">👤</div>
             <h3 class="movie-title">My Profile</h3>
             <p class="movie-meta-item">Manage your account settings</p>
