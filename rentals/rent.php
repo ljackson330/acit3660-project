@@ -2,6 +2,8 @@
 require_once '../db_connect.php';
 require_once '../auth_check.php';
 
+$pageTitle = "Rent a Movie | Movie Rentals";
+
 $message = '';
 
 $moviesResult = mysqli_query($conn, "
@@ -52,41 +54,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+
+include '../includes/header.php';
 ?>
-<!DOCTYPE html>
-<html>
-<head><title>Rent a Movie</title></head>
+
 <body>
+    
+    <div class="container">
+        <h2 class="section-title">Available Movies</h2>
 
-<p><a href="../index.php">Home</a> | <a href="history.php">My Rentals</a> | <a href="../logout.php">Logout</a></p>
+        <?php if ($message): ?>
+            <div
+                style="background-color: var(--bg-card); padding: 1rem; border-left: 4px solid var(--primary-accent); margin-bottom: 2rem; border-radius: var(--radius-sm);">
+                <p><?= htmlspecialchars($message) ?></p>
+            </div>
+        <?php endif; ?>
 
-<h2>Rent a Movie</h2>
+        <?php if (mysqli_num_rows($moviesResult) > 0): ?>
+            <form method="POST" action="rent.php">
+                <div class="movie-grid">
+                    <?php while ($movie = mysqli_fetch_assoc($moviesResult)): ?>
+                        <div class="movie-card">
+                            <div>
+                                <div class="movie-details">
+                                    <span class="badge"><?= htmlspecialchars($movie['rating']) ?></span>
+                                    <span class="badge"><?= htmlspecialchars($movie['releaseyear']) ?></span>
+                                </div>
 
-<?php if ($message): ?>
-    <p><?= htmlspecialchars($message) ?></p>
-<?php endif; ?>
+                                <h3 class="movie-title"><?= htmlspecialchars($movie['title']) ?></h3>
 
-<?php if (mysqli_num_rows($moviesResult) > 0): ?>
-<form method="POST" action="rent.php">
-    <table border="1">
-        <tr>
-            <th>Title</th><th>Director</th><th>Year</th><th>Rating</th><th>Available Copies</th><th>Action</th>
-        </tr>
-        <?php while ($movie = mysqli_fetch_assoc($moviesResult)): ?>
-        <tr>
-            <td><?= htmlspecialchars($movie['title']) ?></td>
-            <td><?= htmlspecialchars($movie['director']) ?></td>
-            <td><?= htmlspecialchars($movie['releaseyear']) ?></td>
-            <td><?= htmlspecialchars($movie['rating']) ?></td>
-            <td><?= $movie['available_copies'] ?></td>
-            <td><button type="submit" name="movieid" value="<?= $movie['movieid'] ?>">Rent</button></td>
-        </tr>
-        <?php endwhile; ?>
-    </table>
-</form>
-<?php else: ?>
-    <p>No movies available for rent.</p>
-<?php endif; ?>
+                                <span class="movie-meta-item">Director:
+                                    <strong><?= htmlspecialchars($movie['director']) ?></strong></span>
+                            </div>
+
+                            <div class="availability-status">
+                                <p>Stock: <span style="color: #4caf50; font-weight: bold;"><?= $movie['available_copies'] ?>
+                                        Available</span></p>
+                            </div>
+
+                            <button type="submit" name="movieid" value="<?= $movie['movieid'] ?>" class="btn btn-primary">Rent
+                                This Movie</button>
+                        </div>
+                    <?php endwhile; ?>
+                </div>
+            </form>
+        <?php else: ?>
+            <p style="text-align: center; color: var(--text-muted); padding: 3rem 0;">No movies currently available for
+                rent.</p>
+        <?php endif; ?>
+    </div>
+    
+    <?php include '../includes/footer.php'; ?>
 
 </body>
+
 </html>

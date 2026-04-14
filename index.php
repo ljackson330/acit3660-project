@@ -1,33 +1,47 @@
 <?php
 require_once 'auth_check.php';
+
+$pageTitle = "Dashboard | Movie Rentals";
+
+include 'includes/header.php'; 
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Movie Rental - Dashboard</title>
-</head>
-<body>
-    <h2>Welcome, <?php echo $_SESSION['fname'] . " " . $_SESSION['lname']; ?>!</h2>
-    <p>You are logged in as: <strong><?php echo $_SESSION['usertype']; ?></strong></p>
-    
-    <hr>
-    
-    <h3>Main Menu</h3>
-    <ul>
-        <li><a href="rentals/rent.php">Browse Movies</a></li>
-        // TODO: user profile page
-        <li><a href="">My Profile & Rental History</a></li>
-        
-        <?php if (isAdmin()) { ?>
-            // TODO: admin dashboard
-            <li><a href="">Admin Dashboard</a></li>
-        <?php } ?>
-        
-        <li><a href="actions/query.php">View All Movies (Test)</a></li>
-    </ul>
-    
-    <hr>
-    <a href="logout.php">Logout</a>
-</body>
-</html>
+<div class="container">
+    <div style="margin-bottom: 2rem;">
+        <h2 class="section-title">Welcome, <?php echo htmlspecialchars($_SESSION['fname'] . " " . $_SESSION['lname']); ?>!</h2>
+        <p style="color: var(--text-muted);">
+            Account Type: <span class="badge" style="background: var(--primary-accent); color: white;"><?php echo htmlspecialchars($_SESSION['usertype']); ?></span>
+        </p>
+    </div>
+
+    <div class="movie-grid">
+        <a href="rentals/rent.php" class="movie-card" style="text-align: center; justify-content: center; min-height: 200px;">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🎬</div>
+            <h3 class="movie-title">Browse Movies</h3>
+            <p class="movie-meta-item">Explore our catalog and rent new titles.</p>
+        </a>
+
+        <a href="rentals/history.php" class="movie-card" style="text-align: center; justify-content: center; min-height: 200px;">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem;">📜</div>
+            <h3 class="movie-title">Rental History</h3>
+            <p class="movie-meta-item">View your active rentals and past returns.</p>
+        </a>
+
+        <a href="#" class="movie-card" style="text-align: center; justify-content: center; min-height: 200px; opacity: 0.7;">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem;">👤</div>
+            <h3 class="movie-title">My Profile</h3>
+            <p class="movie-meta-item">Manage your account settings (Coming Soon).</p>
+        </a>
+
+        <?php if (isAdmin()): ?>
+            <a href="admin/dashboard.php" class="movie-card" style="text-align: center; justify-content: center; min-height: 200px; border-style: dashed;">
+                <div style="font-size: 2.5rem; margin-bottom: 1rem;">🛠️</div>
+                <h3 class="movie-title">Admin Dashboard</h3>
+                <p class="movie-meta-item">Manage inventory, users, and reports.</p>
+            </a>
+        <?php endif; ?>
+    </div>
+
+</div>
+
+<?php include 'includes/footer.php'; ?>
