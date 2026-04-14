@@ -2,8 +2,11 @@
 
 ## Group Members
 Liam Jackson
+
 Niko Strazinger
+
 Jean Pascua
+
 Nick Tan
 
 ## Setup
