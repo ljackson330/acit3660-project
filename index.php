@@ -18,7 +18,7 @@ include 'includes/header.php';
         <a href="rentals/rent.php" class="movie-card" style="text-align: center; justify-content: center; min-height: 200px;">
             <div style="font-size: 2.5rem; margin-bottom: 1rem;">🎬</div>
             <h3 class="movie-title">Browse Movies</h3>
-            <p class="movie-meta-item">Explore our catalog and rent new titles.</p>
+            <p class="movie-meta-item">Explore our catalog and rent new movies.</p>
         </a>
 
         <a href="rentals/history.php" class="movie-card" style="text-align: center; justify-content: center; min-height: 200px;">
@@ -27,10 +27,10 @@ include 'includes/header.php';
             <p class="movie-meta-item">View your active rentals and past returns.</p>
         </a>
 
-        <a href="#" class="movie-card" style="text-align: center; justify-content: center; min-height: 200px; opacity: 0.7;">
+        <a href="/profile.php" class="movie-card" style="text-align: center; justify-content: center; min-height: 200px;">
             <div style="font-size: 2.5rem; margin-bottom: 1rem;">👤</div>
             <h3 class="movie-title">My Profile</h3>
-            <p class="movie-meta-item">Manage your account settings (Coming Soon).</p>
+            <p class="movie-meta-item">Manage your account settings</p>
         </a>
 
         <?php if (isAdmin()): ?>
@@ -40,6 +40,13 @@ include 'includes/header.php';
                 <p class="movie-meta-item">Manage inventory, users, and reports.</p>
             </a>
         <?php endif; ?>
+
+        <a href="actions/queries.php" class="movie-card" style="text-align: center; justify-content: center; min-height: 200px;">
+        <div style="font-size: 2.5rem; margin-bottom: 1rem;">📊</div>
+            <h3 class="movie-title">Advanced Queries</h3>
+            <p class="movie-meta-item">Browse advanced SQL queries.</p>
+        </a>
+
     </div>
 
 </div>
